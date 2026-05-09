@@ -1,73 +1,27 @@
-# React + TypeScript + Vite
+# LinguaLive
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Most language apps feel like a digital version of a high school textbook. You click through flashcards, memorize verb charts, and hope that one day you'll be able to actually talk to someone. LinguaLive skips the drills and puts you straight into the conversation.
 
-Currently, two official plugins are available:
+We built this for people who want to learn a language the way it’s actually spoken: on the street, in cafes, and through messy, real-world interactions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Meet the Locals
+You aren't talking to a chatbot; you're talking to people. Our AI personas have their own lives and attitudes:
+- **Valentina** will tease you if you can't handle the spice at her taco stand in Mexico City.
+- **Hugo** might seem aloof at first, but he'll warm up if you order your espresso like a local in Montmartre.
+- **Kenji** in Osaka is always happy to explain the secret behind his ramen broth.
 
-## React Compiler
+### Real-World Situations
+Instead of abstract lessons, you’re thrown into scenarios where the stakes feel real. You might find yourself:
+- Trying to find a lost reservation at a crowded guesthouse.
+- Navigating a busy market where nobody speaks English.
+- Making small talk with a stranger at a café.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### How it Works
+The app uses streaming AI to drive unscripted dialogues. There are no "correct" answers—just natural communication. You’ll pick up on cultural nuances and slang that textbooks usually ignore, all within a high-fidelity interface designed to keep you focused on the conversation.
 
-## Expanding the ESLint configuration
+## Tech Stack
+LinguaLive is built with React, TypeScript, and Vite. It uses Tailwind CSS for its editorial aesthetic and the Anthropic Claude API to power the character logic.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+*Talk your way across the world.*
