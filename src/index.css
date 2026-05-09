@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f5efe6;
+  --surface: #fff8f0;
+  --text-primary: #1a0f00;
+  --text-secondary: #6b5744;
+  --accent: #d97757; /* Default accent, overrides per language */
+  --chat-user: #1a0f00;
+  --chat-ai: #fff8f0;
+  --border: rgba(26, 15, 0, 0.12);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(26, 15, 0, 0.2);
+  border-radius: 10px;
+}
+
+.new-vocab {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: #d4af37; /* golden */
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.new-vocab:hover {
+  background-color: rgba(212, 175, 55, 0.1);
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: var(--text-primary);
+  animation: pulseBreath 1s infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
