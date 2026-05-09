@@ -14,12 +14,13 @@ interface ConversationUIProps {
 }
 
 export const ConversationUI: React.FC<ConversationUIProps> = ({ persona, scenario, onEnd }) => {
-  const { dispatch } = useAppContext();
+  const { state, dispatch } = useAppContext();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [hints, setHints] = useState<string[]>([]);
   const [cultureTip, setCultureTip] = useState<string | null>(null);
+  const [showTranslations, setShowTranslations] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   
   const scrollToBottom = () => {
@@ -74,11 +75,23 @@ export const ConversationUI: React.FC<ConversationUIProps> = ({ persona, scenari
           return updated;
         });
       },
-      () => {
+      (finalText, translation) => {
         setIsTyping(false);
-        dispatch({ type: 'ADD_XP', payload: 10 }); // Reward exchange
+        setMessages(prev => {
+          const updated = [...prev];
+          updated[updated.length - 1].content = finalText;
+          updated[updated.length - 1].translation = translation;
+          return updated;
+        });
         
-        // Random chance for a culture tip
+        dispatch({ type: 'ADD_XP', payload: 10 });
+        
+        // Robust Vocab Extraction Check
+        // If the AI included a new-vocab span, we should notify the user or auto-add it
+        if (finalText.includes('new-vocab')) {
+          // Subtle notification or logic to highlight the word
+        }
+
         if (Math.random() > 0.7 && messages.length > 3) {
           const tips = [
             "In many cultures, greeting people warmly is essential before asking for something.",
@@ -90,7 +103,8 @@ export const ConversationUI: React.FC<ConversationUIProps> = ({ persona, scenari
       },
       () => {
         setIsTyping(false);
-      }
+      },
+      state.useLocalAI
     );
   };
 
@@ -141,12 +155,22 @@ export const ConversationUI: React.FC<ConversationUIProps> = ({ persona, scenari
           <h2 className="text-xl font-display font-semibold m-0 leading-tight">{persona.name}</h2>
           <p className="text-sm text-textSecondary m-0">{persona.role} in {persona.city}</p>
         </div>
-        <div className="ml-auto flex items-center">
+        <div className="ml-auto flex items-center gap-4">
+          <button 
+            onClick={() => setShowTranslations(!showTranslations)}
+            className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
+              showTranslations 
+                ? 'bg-accent text-white' 
+                : 'bg-bg border border-borderBase text-textSecondary hover:text-textPrimary'
+            }`}
+          >
+            {showTranslations ? 'Hide Translations' : 'Show Translations'}
+          </button>
           <button 
             onClick={onEnd}
             className="px-4 py-2 text-sm text-textSecondary hover:text-textPrimary transition-colors"
           >
-            End Conversation
+            End Session
           </button>
         </div>
       </div>
@@ -167,10 +191,17 @@ export const ConversationUI: React.FC<ConversationUIProps> = ({ persona, scenari
               style={msg.role === 'user' ? { backgroundColor: 'var(--chat-user)' } : {}}
             >
               {msg.role === 'assistant' ? (
-                <div 
-                  className="leading-relaxed font-body text-[1.05rem]"
-                  dangerouslySetInnerHTML={{ __html: msg.content || (isTyping && idx === messages.length - 1 ? '<span class="typewriter-cursor"></span>' : '') }}
-                />
+                <>
+                  <div 
+                    className="leading-relaxed font-body text-[1.05rem]"
+                    dangerouslySetInnerHTML={{ __html: msg.content || (isTyping && idx === messages.length - 1 ? '<span class="typewriter-cursor"></span>' : '') }}
+                  />
+                  {showTranslations && msg.translation && (
+                    <div className="mt-2 pt-2 border-t border-borderBase text-sm text-textSecondary italic animate-fadeIn">
+                      {msg.translation}
+                    </div>
+                  )}
+                </>
               ) : (
                 <div className="leading-relaxed font-body text-[1.05rem]">{msg.content}</div>
               )}

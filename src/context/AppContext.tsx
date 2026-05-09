@@ -24,6 +24,7 @@ export interface AppState {
   vocabBank: VocabItem[];
   cultureJournal: CultureTip[];
   history: any[];
+  useLocalAI: boolean;
 }
 
 const defaultState: AppState = {
@@ -33,16 +34,20 @@ const defaultState: AppState = {
   vocabBank: [],
   cultureJournal: [],
   history: [],
+  useLocalAI: false, // Default to false for public visitors
 };
 
 type Action =
   | { type: 'ADD_XP'; payload: number }
   | { type: 'UPDATE_STREAK'; payload: string }
   | { type: 'ADD_VOCAB'; payload: VocabItem }
-  | { type: 'ADD_CULTURE_TIP'; payload: CultureTip };
+  | { type: 'ADD_CULTURE_TIP'; payload: CultureTip }
+  | { type: 'TOGGLE_LOCAL_AI'; payload: boolean };
 
 const appReducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
+    case 'TOGGLE_LOCAL_AI':
+      return { ...state, useLocalAI: action.payload };
     case 'ADD_XP':
       return { ...state, xp: state.xp + action.payload };
     case 'UPDATE_STREAK':

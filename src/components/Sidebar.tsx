@@ -1,14 +1,22 @@
 import React from 'react';
-import { Flame, Book, Award, Clock } from 'lucide-react';
+import { Flame, Book, Award, Clock, Cpu, Info } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
+import logo from '../assets/logo.png';
 
 export const Sidebar: React.FC = () => {
-  const { state } = useAppContext();
+  const { state, dispatch } = useAppContext();
 
   return (
     <div className="w-80 bg-surface border-r border-borderBase h-full flex flex-col hidden md:flex animate-fadeIn">
       <div className="p-6 border-b border-borderBase flex-shrink-0">
-        <h1 className="font-display text-2xl font-bold tracking-tight mb-6">LinguaLive</h1>
+        <div className="flex items-center gap-3 mb-6 group cursor-pointer">
+          <div className="w-10 h-10 rounded-xl overflow-hidden shadow-sm border border-borderBase transition-transform duration-300 group-hover:scale-105 group-hover:shadow-md">
+            <img src={logo} alt="LinguaLive Logo" className="w-full h-full object-cover" />
+          </div>
+          <h1 className="font-display text-2xl font-bold tracking-tight bg-gradient-to-r from-textPrimary to-textSecondary bg-clip-text text-transparent">
+            LinguaLive
+          </h1>
+        </div>
         
         <div className="flex gap-4 mb-6">
           <div className="flex-1 bg-bg rounded-xl p-4 flex flex-col items-center justify-center border border-borderBase shadow-sm">
@@ -21,6 +29,28 @@ export const Sidebar: React.FC = () => {
             <span className="text-2xl font-bold font-display">{state.xp}</span>
             <span className="text-xs text-textSecondary uppercase tracking-wider font-semibold">XP</span>
           </div>
+        </div>
+
+        {/* Local AI Toggle */}
+        <div className="bg-bg rounded-xl p-4 border border-borderBase shadow-sm">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <Cpu className={state.useLocalAI ? "text-accent" : "text-textSecondary"} size={20} />
+              <span className="text-sm font-semibold">Local AI Mode</span>
+            </div>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input 
+                type="checkbox" 
+                checked={state.useLocalAI}
+                onChange={(e) => dispatch({ type: 'TOGGLE_LOCAL_AI', payload: e.target.checked })}
+                className="sr-only peer" 
+              />
+              <div className="w-11 h-6 bg-borderBase peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
+            </label>
+          </div>
+          <p className="text-[10px] text-textSecondary leading-tight">
+            Connect to your local Ollama instance for unlimited free practice.
+          </p>
         </div>
       </div>
 

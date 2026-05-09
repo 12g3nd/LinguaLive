@@ -4,6 +4,7 @@ import type { Persona } from '../data/personas';
 import { scenarios } from '../data/scenarios';
 import type { Scenario } from '../data/scenarios';
 import { ChevronRight, ArrowLeft } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 interface ScenarioPickerProps {
   onSelect: (persona: Persona, scenario: Scenario) => void;
@@ -15,7 +16,15 @@ export const ScenarioPicker: React.FC<ScenarioPickerProps> = ({ onSelect }) => {
   if (!selectedPersona) {
     return (
       <div className="p-8 md:p-12 max-w-6xl mx-auto animate-fadeIn">
-        <header className="mb-12 text-center">
+        <header className="mb-12 text-center flex flex-col items-center">
+          <div className="md:hidden flex items-center gap-2 mb-6">
+            <div className="w-8 h-8 rounded-lg overflow-hidden shadow-sm border border-borderBase">
+              <img src={logo} alt="LinguaLive Logo" className="w-full h-full object-cover" />
+            </div>
+            <h1 className="font-display text-xl font-bold tracking-tight bg-gradient-to-r from-textPrimary to-textSecondary bg-clip-text text-transparent">
+              LinguaLive
+            </h1>
+          </div>
           <h1 className="text-5xl md:text-6xl font-display font-bold text-textPrimary mb-4">Stop studying. Start talking.</h1>
           <p className="text-xl text-textSecondary font-body max-w-2xl mx-auto">Language isn't a subject. It's a place. Choose your destination and drop right in.</p>
         </header>

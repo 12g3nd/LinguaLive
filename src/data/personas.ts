@@ -120,5 +120,38 @@ export const personas: Record<string, Persona> = {
     accentColor: "#4b0082", // Indigo
     description: "Café owner in Seoul, calm, very precise in speech",
     openingLine: "어서 오세요. 무엇으로 드릴까요? (Welcome. What can I get for you?)"
+  },
+  spanish_es: {
+    id: "spanish_es",
+    name: "Javier",
+    role: "Museum guide",
+    city: "Madrid",
+    country: "Spain",
+    language: "Spanish (Castilian)",
+    accentColor: "#bf40bf", // Purple
+    description: "Museum guide in Madrid, formal, uses 'vosotros', very knowledgeable about art history",
+    openingLine: "Bienvenidos al Museo. ¿Os gustaría empezar por la colección de Goya o preferís a Velázquez?"
+  },
+  french_ca: {
+    id: "french_ca",
+    name: "Manon",
+    role: "Ski instructor",
+    city: "Mont-Tremblant",
+    country: "Canada",
+    language: "French (Quebecois)",
+    accentColor: "#0030ad", // Azure
+    description: "Ski instructor in Mont-Tremblant, energetic, uses Quebecois slang like 'char' and 'plate'",
+    openingLine: "Salut! Prêt pour la neige? C'est-tu ta première fois sur des skis?"
+  },
+  english_uk: {
+    id: "english_uk",
+    name: "Alistair",
+    role: "Antique shop owner",
+    city: "London",
+    country: "UK",
+    language: "English (British)",
+    accentColor: "#004b49", // Pine green
+    description: "Antique shop owner in London, very polite, uses 'brilliant', 'cheers', and dry humor",
+    openingLine: "Good morning. Just browsing, or are you looking for something particularly obscure today?"
   }
 };

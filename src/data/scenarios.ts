@@ -47,5 +47,29 @@ export const scenarios: Scenario[] = [
     description: "You are at a casual professional meetup. You need to introduce yourself, explain what you do, and ask polite questions.",
     difficulty: "Advanced",
     estimatedExchanges: 10
+  },
+  {
+    id: "medical_1",
+    category: "Emergency & Health",
+    title: "Explaining symptoms at a pharmacy",
+    description: "You've caught a nasty bug and need specific medicine. You have to explain your symptoms clearly to the pharmacist to get the right help.",
+    difficulty: "Intermediate",
+    estimatedExchanges: 6
+  },
+  {
+    id: "culture_debate_1",
+    category: "Social & Cultural",
+    title: "Debating the merits of local traditions",
+    description: "You're at a dinner party and the conversation turns to a controversial local tradition. You need to express your opinion respectfully while asking about theirs.",
+    difficulty: "Advanced",
+    estimatedExchanges: 12
+  },
+  {
+    id: "tech_1",
+    category: "Work & Professional",
+    title: "Technical project briefing",
+    description: "You are explaining a complex technical problem to a colleague. You need to use precise terminology and handle their follow-up questions.",
+    difficulty: "Advanced",
+    estimatedExchanges: 15
   }
 ];
